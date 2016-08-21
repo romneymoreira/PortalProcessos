@@ -1,0 +1,107 @@
+﻿<div class="modal-header clearfix text-left no-margin">
+    <button type="button" class="close pull-right" ng-click="vm.cancel()" aria-hidden="true">
+        <i class="pg-close fs-14"></i>
+    </button>
+    <h4><span class="semi-bold">Buscar Prestador</span></h4>
+    <div class="alert alert-danger" role="alert" ng-if="vm.message.length > 0">
+        <button class="close" data-dismiss="alert"></button>
+        <i class="fa fa-warning"></i>&nbsp;<strong>Atenção: </strong> {{ vm.message }}
+    </div>
+</div>
+<div class="modal-body">
+
+    <form name="forms.DadosPrestador" class="form-horizontal" block-ui="blockModal">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Buscar médico por</label>
+                    <div class="col-md-9">
+                        <div class="bs-component" style="padding-top:10px;">
+                            <div class="radio-custom radio-primary mb5">
+                                <div id="divCRM" class="radio-custom radio-primary mb5" style="float:left;">
+                                    <input type="radio" id="CRM" ng-model="vm.Busca.TipoBusca" ng-checked="true" ng-click="vm.exibir = 1" value="1" name="CRM">
+                                    <label for="CRM">CRM</label>
+                                </div>
+                                <div id="divPorCNPJ" class="radio-custom radio-primary mb5" style="float:left;">
+                                    <input type="radio" id="PorCNPJ" ng-model="vm.Busca.TipoBusca" ng-click="vm.exibir = 2" value="2" name="PorCNPJ">
+                                    <label for="PorCNPJ">CNPJ</label>
+                                </div>
+                                <div id="divCPF" class="radio-custom radio-primary mb5" style="float:left;">
+                                    <input type="radio" id="CPF" ng-model="vm.Busca.TipoBusca" ng-click="vm.exibir = 3" value="3" name="CPF">
+                                    <label for="CPF">CPF</label>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group" ng-show="vm.exibir == 1">
+                    <label class="col-md-3 control-label">CRM do médico</label>
+                    <div class="col-md-9">
+                        <div class="input-group">
+                            <input type="text" class="form-control" ng-model="vm.Busca.CrmMedico" only-digits required />
+                            <span class="input-group-btn">
+                                <button class="btn btn-info" type="submit" ng-click="vm.buscar()"><i class="fa fa-search"></i> Buscar</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="vm.exibir == 2">
+                    <label class="col-md-3 control-label">CNPJ do prestador</label>
+                    <div class="col-md-9">
+                        <div class="input-group">
+                            <input type="text" class="form-control" ng-model="vm.Busca.CnpjMedico" required />
+                            <span class="input-group-btn">
+                                <button class="btn btn-info" type="submit" ng-click="vm.buscar()"><i class="fa fa-search"></i> Buscar</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="vm.exibir == 3">
+                    <label class="col-md-3 control-label">CPF do médico</label>
+                    <div class="col-md-9">
+                        <div class="input-group">
+                            <input type="text" class="form-control" ng-model="vm.Busca.CpfMedico" ui-br-cpf-mask required />
+                            <span class="input-group-btn">
+                                <button class="btn btn-info" type="submit" ng-click="vm.buscar()"><i class="fa fa-search"></i> Buscar</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <table class="table table-hover table-condensed table-striped" ng-show="vm.prestadores.length > 0">
+                    <thead>
+                        <tr class="bg-complete-lighter">
+                            <th>Nome</th>
+                            <th style="width:7%">Selecionar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in vm.prestadores">
+                            <td>{{ item.Descricao }}</td>
+                            <td style="text-align: center;">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary btn-xs no-margin" ng-click="vm.selecionar(item)" tooltip="Selecionar">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+
+    </form>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" ng-click="vm.cancel()">Fechar</button>
+</div>
+
+

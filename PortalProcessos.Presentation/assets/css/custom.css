@@ -1,0 +1,258 @@
+/****************************************
+* 
+* CUSTOM CSS STYLES
+*
+***************************************/
+
+
+/* THEME FIXES / CUSTOMIZATIONS
+------------------------------------*/
+
+.login-header { margin-left: 15px;}
+h1.title {
+     margin-top: 0;
+     margin-bottom: 10px;
+     letter-spacing: normal;
+     font-size: 33px;
+     font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+     -webkit-font-smoothing: antialiased;
+     -webkit-text-size-adjust: 100%;
+     -ms-text-size-adjust: 100%;
+     font-weight: 300;
+     
+}
+
+.nav-tabs li a { cursor: pointer !important;}
+
+
+
+.no-margin { margin: 0;}
+.no-padding { padding: 0;}
+.no-gap { margin: 0;padding: 0;}
+
+.md-modal-window .modal-dialog {
+  width: 50%;
+}
+
+.lg-modal-window .modal-dialog {
+  width: 70%;
+}
+
+.xl-modal-window .modal-dialog {
+  width: 90%;
+}
+
+
+/* DATEPICKER
+------------------------------------*/
+
+/*.datepicker, .ui-datepicker, .bootstrap-datetimepicker-widget {z-index:92000000 !important;}
+.datepicker table tr td.active {
+  background-color: #6d5cae !important;
+  color:#fff !important;  
+}
+.datepicker table tr td.day:hover, .datepicker table tr td.day.focused {cursor: pointer !important;}
+.datepicker table tr td { 
+  padding: 5px;
+  text-align: center !important;
+  border-radius: 4px !important;
+}
+.datepicker thead tr th { text-align: center;}*/
+
+
+/* LOADING ANIMATION
+------------------------------------*/
+
+#followingBallsG {
+    position: relative;
+    width: 120px;
+    height: 9px;
+}
+
+.followingBallsG {
+    background-color: #707070;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 9px;
+    height: 9px;
+    -moz-border-radius: 5px;
+    -moz-animation-name: bounce_followingBallsG;
+    -moz-animation-duration: 2.5s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-direction: normal;
+    -webkit-border-radius: 5px;
+    -webkit-animation-name: bounce_followingBallsG;
+    -webkit-animation-duration: 2.5s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: normal;
+    -ms-border-radius: 5px;
+    -ms-animation-name: bounce_followingBallsG;
+    -ms-animation-duration: 2.5s;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-direction: normal;
+    -o-border-radius: 5px;
+    -o-animation-name: bounce_followingBallsG;
+    -o-animation-duration: 2.5s;
+    -o-animation-iteration-count: infinite;
+    -o-animation-direction: normal;
+    border-radius: 5px;
+    animation-name: bounce_followingBallsG;
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+}
+
+#followingBallsG_1 {
+    -moz-animation-delay: 0s;
+}
+
+#followingBallsG_1 {
+    -webkit-animation-delay: 0s;
+}
+
+#followingBallsG_1 {
+    -ms-animation-delay: 0s;
+}
+
+#followingBallsG_1 {
+    -o-animation-delay: 0s;
+}
+
+#followingBallsG_1 {
+    animation-delay: 0s;
+}
+
+#followingBallsG_2 {
+    -moz-animation-delay: 0.25s;
+    -webkit-animation-delay: 0.25s;
+    -ms-animation-delay: 0.25s;
+    -o-animation-delay: 0.25s;
+    animation-delay: 0.25s;
+}
+
+#followingBallsG_3 {
+    -moz-animation-delay: 0.5s;
+    -webkit-animation-delay: 0.5s;
+    -ms-animation-delay: 0.5s;
+    -o-animation-delay: 0.5s;
+    animation-delay: 0.5s;
+}
+
+#followingBallsG_4 {
+    -moz-animation-delay: 0.75s;
+    -webkit-animation-delay: 0.75s;
+    -ms-animation-delay: 0.75s;
+    -o-animation-delay: 0.75s;
+    animation-delay: 0.75s;
+}
+
+@-moz-keyframes bounce_followingBallsG {
+    0% {
+        left: 0px;
+        background-color: #707070;
+}
+
+    50% {
+        left: 111px;
+        background-color: #FFFFFF;
+}
+
+    100% {
+        left: 0px;
+        background-color: #707070;
+}
+}
+
+@-webkit-keyframes bounce_followingBallsG {
+    0% {
+        left: 0px;
+        background-color: #707070;
+}
+
+    50% {
+        left: 111px;
+        background-color: #FFFFFF;
+}
+
+    100% {
+        left: 0px;
+        background-color: #707070;
+}
+}
+
+@-ms-keyframes bounce_followingBallsG {
+    0% {
+        left: 0px;
+        background-color: #707070;
+}
+
+    50% {
+        left: 111px;
+        background-color: #FFFFFF;
+}
+
+    100% {
+        left: 0px;
+        background-color: #707070;
+}
+}
+
+@-o-keyframes bounce_followingBallsG {
+    0% {
+        left: 0px;
+        background-color: #707070;
+}
+
+    50% {
+        left: 111px;
+        background-color: #FFFFFF;
+  }
+
+    100% {
+        left: 0px;
+        background-color: #707070;
+  }
+}
+
+@keyframes bounce_followingBallsG {
+    0% {
+        left: 0px;
+        background-color: #707070;
+  }
+
+    50% {
+        left: 111px;
+        background-color: #FFFFFF;
+  }
+
+    100% {
+        left: 0px;
+        background-color: #707070;
+  }
+    }
+
+.resumo-item {
+    width: 100%;
+    float: left;
+    clear: both;
+    margin-top: 5px;
+}
+
+    .resumo-item .key {
+        float: left;
+        width: 30%;
+        text-align: right;
+        padding: 5px 10px;
+        background: #3C93CE;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .resumo-item .value {
+        float: left;
+        width: 70%;
+        text-align: left;
+        padding: 5px 10px;
+        background: #DAEFFD;
+    }

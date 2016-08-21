@@ -1,0 +1,92 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">
+        <span class="panel-title">
+            <i class="fa fa-cog"></i>{{vm.Titulo}}
+        </span>
+    </h3>
+</div>
+<div class="modal-body" block-ui="blockModal">
+    <div class="row">
+        <div class="panel panel-info">
+            <blockquote class="info" style="height: 40px;">
+                <div style="float: left;"><i class="fa fa-calendar-o"></i> {{vm.data}} </div>
+            </blockquote>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">Dados da Atividade</span>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <div ng-class="vm.AlertClassDiv" ng-show="vm.AlertMessage.length > 0">
+                        <span><i ng-class="vm.AlertClassI"></i> <strong> {{ vm.AlertMessage  }}</strong></span>
+                    </div>
+                </div>
+                <form name="forms.editForm" id="form-dados" class="form-horizontal" role="form" autocomplete="off" block-ui="blockForm">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="Cpf" class="col-sm-2 required">Setor</label>
+                                <div class="col-sm-10">
+                                    <ui-select ng-model="vm.SetorSelecionado"
+                                               theme="bootstrap"
+                                               reset-search-input="false"
+                                               title="Selecione um tipo"
+                                               name="Tipo"
+                                               required>
+                                        <ui-select-match placeholder="Digite o nome do Titular...">{{$select.selected.nomeSetor}}</ui-select-match>
+                                        <ui-select-choices repeat="item in vm.setores track by $index">
+                                            <div ng-bind-html="item.nomeSetor | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="Telefone1" class="col-sm-2 required">Tipo</label>
+                                    <div class="col-sm-10">
+                                        <ui-select ng-model="vm.TipoSelecionado"
+                                                   theme="bootstrap"
+                                                   reset-search-input="false"
+                                                   title="Selecione um tipo"
+                                                   name="Tipo"
+                                                   required>
+                                            <ui-select-match placeholder="Digite o nome do Titular...">{{$select.selected.Descricao}}</ui-select-match>
+                                            <ui-select-choices repeat="item in vm.tipos track by $index">
+                                                <div ng-bind-html="item.Descricao | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="col-md-12">
+                            <div class="form-group" show-errors>
+                                <label for="atividade" class="col-sm-2 required">Processo/Atividade</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" id="atividade" placeholder="Processo/Atividade" name="atividade" ng-model="vm.ProcessoAtividade.Atividade" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group" show-errors>
+                                <label for="Observacao" class="col-sm-2 required">Observação</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" id="Observacao" placeholder="Observação" name="Observacao" ng-model="vm.ProcessoAtividade.Observacao" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-default" ng-click="vm.cancel()">Cancelar</button>
+        <button type="button" class="btn btn-primary btn-animated from-top fa fa-save" ng-click="vm.save()">
+            <span>Salvar</span>
+        </button>
+    </div>
+
+</div>

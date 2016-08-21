@@ -1,0 +1,151 @@
+﻿<div class="anim-in-out anim-slide-below-fade">
+   
+    <div class="row admin-panels">
+       
+        <div class="col-md-12">
+           
+            <div class="panel panel-group block-ui block-ui-anim-fade" block-ui="blockModal" aria-busy="false">
+                <div class="panel-heading">
+                    <span class="panel-icon"><i class="fa fa-file"></i></span>
+                    <span class="panel-title"> Pendências </span>
+
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button ng-click="vm.novaAtividade()" class="btn btn-success btn-cons pull-right"><i class="glyphicon glyphicon-plus"></i> Nova Atividade</button>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="panel-body">
+                        <div class="alert alert-info" role="alert" ng-if="vm.MensagemGrid == true">
+                            <strong>
+                                Informação:
+                            </strong><br />
+                            Não foi encontrado atividades com o filtro informado. Por favor, tente novamente.
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Nome">Data de Solicitação</label>
+                                        <div class="input-daterange input-group gui-input hasDatepicker" id="datepicker-range" bsdatepicker>
+                                            <input type="text" ng-model="vm.dtInicio" class="input-sm form-control" name="start" ui-date-mask ng-required="true">
+                                            <span class="input-group-addon">até</span>
+                                            <input type="text" ng-model="vm.dtTermino" class="input-sm form-control gui-input hasDatepicker" name="end" ui-date-mask ng-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Nome">Responsavel</label>
+                                        <ui-select ng-model="vm.ReponsavelSelecionado"
+                                                   theme="bootstrap"
+                                                   title="Digite o nome de um responsável...">
+                                            <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                                            <ui-select-choices repeat="item in vm.responsaveis track by $index"
+                                                               refresh-delay="0">
+                                                <span ng-bind-html="item.name | highlight: $select.search"></span>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="situacao" class="">Setor</label>
+                                        <ui-select ng-model="vm.SetorSelecionado"
+                                                   theme="bootstrap"
+                                                   reset-search-input="false"
+                                                   title="Selecione um tipo"
+                                                   name="situacao"
+                                                   required>
+                                            <ui-select-match placeholder="Selecione um setor...">{{$select.selected.nomeSetor}}</ui-select-match>
+                                            <ui-select-choices repeat="item in vm.setores track by $index">
+                                                <div ng-bind-html="item.nomeSetor | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="Tipo" class="">Tipo</label>
+                                        <ui-select ng-model="vm.TipoSelecionado"
+                                                   theme="bootstrap"
+                                                   reset-search-input="false"
+                                                   title="Selecione um tipo"
+                                                   name="Tipo"
+                                                   required>
+                                            <ui-select-match placeholder="Selecione um tipo">{{$select.selected.Descricao}}</ui-select-match>
+                                            <ui-select-choices repeat="item in vm.tipos track by $index">
+                                                <div ng-bind-html="item.Descricao | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="status" class="">Status</label>
+                                        <ui-select ng-model="vm.StatusSelecionado"
+                                                   theme="bootstrap"
+                                                   reset-search-input="false"
+                                                   title="Selecione um status"
+                                                   name="status"
+                                                   required>
+                                            <ui-select-match placeholder="Selecione o status...">{{$select.selected.Descricao}}</ui-select-match>
+                                            <ui-select-choices repeat="item in vm.status track by $index">
+                                                <div ng-bind-html="item.Descricao | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-primary" style="margin-right: 13px" ng-click="vm.Buscar();"><i class="fa fa-search"></i> Buscar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <br />
+                        <table class="table table-hover table-condensed table-striped" datatable="ng">
+                            <thead>
+                                <tr class="primary">
+                                    <th>Setor</th>
+                                    <th>Atividade</th>
+                                    <th>Tipo</th>
+                                    <th>Responsável</th>
+                                    <th>Data</th>
+                                    <th>Status</th>
+                                    <th>Observações</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in vm.atividades">
+                                    <td>{{ item.Setor }} </td>
+                                    <td>{{ item.Atividade }} </td>
+                                    <td>
+                                        <span style="float: right;" ng-class="{'label label-rounded label-warning': item.Status == '1',
+                                                                  'label label-rounded label-success': item.Status == '2',
+                                                                  'label label-rounded label-primary': item.Status == '3'}">{{ item.Status }}</span>
+                                    </td>
+                                    <td>{{ item.Responsavel }} </td>
+                                    <td>{{ item.Data | date:'dd/MM/yyyy' }} </td>
+                                    <td>{{ item.Status }} </td>
+                                    <td>{{ item.Observacoes }} </td>
+                                    <td>
+                                        <a class="btn btn-primary btn-xs" ng-click="vm.edit(item)" tooltip="Editar"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-danger btn-xs" ng-click="vm.excluir(item)" tooltip="Excluir"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> <!-- fim painel body -->
+            </div>
+        </div>
+    </div>
+</div>

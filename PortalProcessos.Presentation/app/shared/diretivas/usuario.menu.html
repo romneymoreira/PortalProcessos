@@ -1,0 +1,33 @@
+﻿<!--<div class="dropdown pull-right">
+    <div class="pull-left p-r-10 p-t-10 fs-16 font-heading">
+        <p class="no-margin semi-bold">|  {{ $root.usuario.Name }}</p>
+    </div>
+    <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="thumbnail-wrapper d32 circular inline m-t-5">
+            <i class="fa fa-user" style="font-size:20px;"></i>
+        </span>
+    </button>
+    <ul class="dropdown-menu profile-dropdown" role="menu">
+        <li>
+            <a ui-sref="dadosCadastrais"><i class="pg-settings_small"></i>Minha Conta</a>
+        </li>
+        <li class="bg-master-lighter">
+            <a ui-sref="login" class="clearfix" ng-click="vm.Sair()">
+                <span class="pull-left">Sair</span>
+                <span class="pull-right"><i class="pg-power"></i></span>
+            </a>
+        </li>
+    </ul>
+</div>-->
+<ul class="nav navbar-nav navbar-right">
+    <li>
+        <a href="#" class="dropdown-toggle fw600 p15">
+            <img src="assets/img/avatars/placeholder.png" alt="avatar" class="mw30 br64 mr15"> {{ vm.Usuario.Name }}
+        </a>
+    </li>
+    <li>
+        <a ui-sref="login" class="clearfix" ng-click="vm.Sair()">
+            <i class="fa fa-sign-out"></i> Sair
+        </a>
+    </li>
+</ul>

@@ -1,0 +1,96 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">
+        <span class="panel-title">
+            <i class="fa fa-cog"></i>{{vm.Titulo}}
+        </span>
+    </h3>
+</div>
+<div class="modal-body" block-ui="blockModal">
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">Links do Portal de Processos</span>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <div ng-class="vm.AlertClassDiv" ng-show="vm.AlertMessage.length > 0">
+                        <span><i ng-class="vm.AlertClassI"></i> <strong> {{ vm.AlertMessage  }}</strong></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form name="forms.dados" id="form-dados" class="form-horizontal" role="form" autocomplete="off" block-ui="blockForm">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" placeholder="Descrição" ng-model="vm.Link.NomeLink" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" placeholder="Url link" ng-model="vm.Link.UrlLink" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <ui-select ng-model="vm.setorSelecionado"
+                                               theme="bootstrap"
+                                               reset-search-input="false"
+                                               title="Selecione um tipo"
+                                               ng-change="vm.buscaLinksSetor()"
+                                               name="situacao"
+                                               required>
+                                        <ui-select-match placeholder="Selecione um setor...">{{$select.selected.nomeSetor}}</ui-select-match>
+                                        <ui-select-choices repeat="item in vm.setores track by $index">
+                                            <div ng-bind-html="item.nomeSetor | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-success dark btn-gradient" ng-click="vm.add()"><i class="fa fa-plus"></i> Adicionar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <hr />
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-hover table-condensed table-striped" datatable="ng">
+                            <thead>
+                                <tr class="primary">
+                                    <th style="width: 25%;">Descrição</th>
+                                    <th style="width: 37%;">Link</th>
+                                    <th style="width: 15%;">Setor</th>
+                                    <th style="width: 15%;">Data Inclusão</th>
+                                    <th style="width: 8%;">Excluir</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in vm.links">
+                                    <td>{{ item.nomeLink }}</td>
+                                    <td>{{ item.urlLink }}</td>
+                                    <td>{{ item.nomeSetor}}</td>
+                                    <td>{{ item.dataInclusao | date:'dd/MM/y'}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-xs no-margin" ng-click="vm.excluir(item.idLink)" tooltip="Excluir Link">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" ng-click="vm.cancel()">Cancelar</button>
+    </div>
+</div>

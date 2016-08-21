@@ -1,0 +1,24 @@
+﻿<div class="form-group">
+    <label for="ddlPrestador" class="col-md-2 control-label">{{vmbp.NomeTipo}}</label>
+    <div class="col-md-10">
+        <div class="input-group">
+            <ui-select ng-model="vmbp.pSelecionado"
+                       theme="bootstrap"
+                       title="Selecione um prestador"
+                       ng-click="vmbp.selecionado(vmbp.pSelecionado)"
+                       name="ddlPrestador"
+                       required>
+                <ui-select-match placeholder="Digite o nome do prestador...">{{$select.selected.Descricao}}</ui-select-match>
+                <ui-select-choices repeat="item in vmbp.prestadores track by $index"
+                                   refresh="vmbp.buscarPrestador($select.search)"
+                                   refresh-delay="0">
+                    <div ng-bind-html="item.Descricao | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+            <span class="input-group-addon" ng-click="vmbp.buscar()">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>
+        <p class="hint-text small m-b-0 m-t-5">Identifique o {{vmbp.NomeTipo}}</p>
+    </div>
+</div>

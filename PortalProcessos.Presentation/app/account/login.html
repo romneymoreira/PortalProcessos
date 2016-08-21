@@ -1,0 +1,138 @@
+﻿<section id="content_wrapper">
+
+    <!-- begin canvas animation bg -->
+    <div id="canvas-wrapper">
+        <canvas id="demo-canvas"></canvas>
+    </div>
+
+    <!-- Begin: Content -->
+    <section id="content">
+
+        <div class="admin-form theme-info" id="login1">
+
+            <div class="row mb15 table-layout">
+
+                <div class="col-xs-6 va-m pln">
+                    <a href="dashboard.html" title="Return to Dashboard">
+                        <!--<img src="assets/img/logos/logo_white.png" title="AdminDesigns Logo" class="img-responsive w250">-->
+                    </a>
+                </div>
+
+                <div class="col-xs-6 text-right va-b pr5">
+                    <!--<div class="login-links">
+                        <a href="pages_login.html" class="active" title="Sign In">Registrar</a>
+                        <span class="text-white"> | </span>
+                        <a href="pages_register.html" class="" title="Register">Ajuda</a>
+                    </div>-->
+
+                </div>
+
+            </div>
+
+            <div class="panel panel-info mt10 br-n">
+
+                <div class="panel-heading heading-border bg-white">
+                    <div class="row">
+                        <div class="col-md-12 login-header">
+                            <h1 class="title"><i class="fa fa-lock text-info"></i> Entrar</h1>
+                            <h4 style="font-weight: 300; font-size:16px;">Faça o login para prosseguir</h4>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- end .form-header section -->
+                <form method="post" id="contact" name="loginForm">
+                    <div class="panel-body bg-light p30">
+                        <div class="row">
+                            <div class="col-sm-7 pr30">
+
+                                <div class="section row hidden">
+                                    <h1>Entrar</h1>
+                                </div>
+
+                                <div class="section">
+                                    <label for="username" class="field-label text-muted fs18 mb10">Usuário</label>
+                                    <label for="username" class="field prepend-icon">
+                                        <input ng-model="vm.User.UserName" type="text" name="username" id="username" class="gui-input" placeholder="Digite seu usuário" required>
+                                        <label for="username" class="field-icon">
+                                            <i class="fa fa-user"></i>
+                                        </label>
+                                    </label>
+                                </div>
+                                <!-- end section -->
+
+                                <div class="section">
+                                    <label for="username" class="field-label text-muted fs18 mb10">Senha</label>
+                                    <label for="password" class="field prepend-icon">
+                                        <input ng-model="vm.User.Password" type="password" name="password" id="password" class="gui-input" placeholder="Digite sua senha" required>
+                                        <label for="password" class="field-icon">
+                                            <i class="fa fa-lock"></i>
+                                        </label>
+                                    </label>
+                                    <a style="font-size:11px; margin-top:20px;" href="#">Esqueci minha senha</a>
+                                </div>
+                                <!-- end section -->
+
+                            </div>
+                            <div class="col-sm-5 br-l br-grey pl30">
+                                <!--<h3 class="mb15"> Não possui acesso?</h3>
+                                <button class="btn btn-success mb15"><i class="fa fa-external-link"></i> Solicitar acesso</button>-->
+
+                                <h3 class="mb25"> Dicas de segurança</h3>
+                                <p class="mb15">
+                                    <span class="fa fa-check text-success pr5"></span> Seu login é pessoal e intransferível
+                                </p>
+                                <p class="mb15">
+                                    <span class="fa fa-check text-success pr5"></span> Escolha sempre uma senha forte
+                                </p>
+                                <p class="mb15">
+                                    <span class="fa fa-check text-success pr5"></span> Não esqueça de efetuar logout ao terminar seu trabalho
+                                </p>
+                                
+
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end .form-body section -->
+                    <div class="panel-footer clearfix p10 ph15">
+                        <button type="submit" ng-click="vm.login()" class="button btn-primary mr10 pull-right">Entrar</button>
+                        <label class="switch ib switch-info pull-left input-align mt10">
+                            <input type="checkbox" name="remember" id="remember" checked>
+                            <label for="remember" data-on="SIM" data-off="NÃO"></label>
+                            <span>Lembrar-me</span>
+                        </label>
+                    </div>
+                    <!-- end .form-footer section -->
+                </form>
+            </div>
+        </div>
+
+    </section>
+    <!-- End: Content -->
+
+</section>
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+
+        "use strict";
+
+        // Init Theme Core
+        //Core.init();
+
+        // Init Demo JS
+        //Demo.init();
+
+        // Init CanvasBG and pass target starting location
+        CanvasBG.init({
+            Loc: {
+                x: window.innerWidth / 2,
+                y: window.innerHeight / 3.3
+            },
+        });
+
+    });
+</script>

@@ -1,0 +1,64 @@
+﻿<div class="anim-in-out anim-slide-below-fade">
+
+    <div class="row admin-panels">
+
+        <div class="col-md-12">
+
+            <div class="panel panel-group block-ui block-ui-anim-fade" block-ui="blockModal" aria-busy="false">
+                <div class="panel-heading">
+                    <span class="panel-icon"><i class="fa fa-file"></i></span>
+                    <span class="panel-title"> Links Úteis </span>
+
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <ui-select ng-model="vm.setorSelecionado"
+                                               theme="bootstrap"
+                                               reset-search-input="false"
+                                               title="Selecione um tipo"
+                                               ng-change="vm.buscaLinksSetor()"
+                                               name="situacao"
+                                               >
+                                        <ui-select-match placeholder="Selecione um setor...">{{$select.selected.nomeSetor}}</ui-select-match>
+                                        <ui-select-choices repeat="item in vm.setores track by $index">
+                                            <div ng-bind-html="item.nomeSetor | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-primary no-margin pull-right" ng-click="vm.novoLink()" tooltip="Novo Link">
+                                    <i class="fa fa-plus"></i> Novo Link
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="panel-body">
+                        
+                        <div class="row">
+                            <div class="col-md-12" ng-if="vm.links.length == 0">
+                                <div class="alert alert-info" role="alert">
+                                    <strong>
+                                        Informação:
+                                    </strong><br />
+                                    Não existem links para o setor selecionado.
+                                </div>
+                            </div>
+                                <div class="col-md-12" ng-if="vm.links.length > 0">
+                                    <ul>
+                                        <li ng-repeat="item in vm.links">
+                                            <a href="{{item.urlLink}}" target="_blank">{{item.nomeLink}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div> <!-- fim painel body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
