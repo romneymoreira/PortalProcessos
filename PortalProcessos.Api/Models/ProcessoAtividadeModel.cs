@@ -12,9 +12,11 @@ namespace PortalProcessos.Api.Models
         public int IdSetor { get; set; }
         public string Atividade { get; set; }
         public int Tipo { get; set; }
+        public string DescricaoTipo { get; set; }
         public string Responsavel { get; set; }
         public DateTime DataSolicitacao { get; set; }
         public int Status { get; set; }
+        public string DescricaoStatus { get; set; }
         public string Observacao { get; set; }
         public string NomeSetor { get; set; }
     }

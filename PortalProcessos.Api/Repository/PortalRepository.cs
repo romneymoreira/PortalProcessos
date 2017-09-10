@@ -1,4 +1,6 @@
 ﻿using PortalProcessos.Api.Domain;
+using PortalProcessos.Api.Models;
+using PortalProcessos.Api.PortalContext;
 using PortalProcessos.Api.Repository.Interface;
 using PortalProcessos.Api.UnitOfWork;
 using System;
@@ -39,6 +41,28 @@ namespace PortalProcessos.Api.Repository
         {
             return Context.Select<ProcessoAtividade>().ToList();
         }
+
+        public List<ProcessoAtividade> AtividadesSearch(BuscaAtividadeModel model)
+        {
+            var predicate = PredicateBuilder.True<ProcessoAtividade>();
+            if(model.IdSetor > 0)
+                predicate = predicate.And(x => x.IdSetor == model.IdSetor);
+
+            if(model.Status > 0)
+                predicate = predicate.And(x => x.Status == model.Status);
+
+            if (model.Tipo > 0)
+                predicate = predicate.And(x => x.Tipo == model.Tipo);
+
+            if(model.DataInicio != DateTime.MinValue && model.DataFim != DateTime.MinValue)
+                predicate = predicate.And(x => x.DataSolicitacao >= model.DataInicio && x.DataSolicitacao <= model.DataFim);
+
+            if (!String.IsNullOrEmpty(model.Responsavel))
+                predicate = predicate.And(x => x.Responsavel == model.Responsavel);
+
+            return Context.Select<ProcessoAtividade>().Where(predicate).ToList();
+        }
+
 
         public void ExcluirAtividade(ProcessoAtividade atividade)
         {

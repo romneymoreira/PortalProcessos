@@ -36,7 +36,8 @@ namespace PortalProcessos.Api.Controllers
                     atividade.Observacao = model.Observacao;
                     atividade.Responsavel = model.Responsavel;
                     atividade.Tipo = model.Tipo;
-                    atividade.Status = 1;//insere como pendente
+                    atividade.Status = 1;//insere como 
+                    atividade.Setor = setor;
 
                     var result = _repository.SaveAtividade(atividade);
                 }
@@ -53,11 +54,78 @@ namespace PortalProcessos.Api.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("getAtividades")]
+        public List<ProcessoAtividadeModel> GetAtividadesBusca(BuscaAtividadeModel model)
+        {
+            var result = new List<ProcessoAtividadeModel>();
+            var dados = _repository.AtividadesSearch(model);
+
+            foreach (var item in dados)
+            {
+                result.Add(new ProcessoAtividadeModel
+                {
+                    DataSolicitacao = item.DataSolicitacao,
+                    Tipo = item.Tipo, 
+                    Atividade = item.Atividade,
+                    Id = item.Id,
+                    IdSetor = item.Setor.IdSetor,
+                    NomeSetor = item.Setor.NomeSetor,
+                    Observacao = item.Observacao,
+                    Responsavel = item.Responsavel,
+                    Status = item.Status,
+                    DescricaoStatus = StatusName(item.Status),
+                    DescricaoTipo = TipoDescricao(item.Tipo)
+                });
+            }
+
+            return result;
+        }
+        private string TipoDescricao(int id)
+        {
+            if (id == 1)
+                return "Inclusão";
+            else if (id == 2)
+                return "Alteração";
+            else
+                return "Exclusão";
+        }
+        private string StatusName(int id)
+        {
+            if (id == 1)
+                return "Pendente";
+            else if (id == 2)
+                return "Em Andamento";
+            else
+                return "Concluído";
+        }
+
         [HttpGet]
         [Route("listar")]
-        public List<ProcessoAtividade> Listar()
+        public List<ProcessoAtividadeModel> Listar()
         {
-            return _repository.ListarAtividades();
+            var result = new List<ProcessoAtividadeModel>();
+            var dados = _repository.ListarAtividades();
+
+            foreach (var item in dados)
+            {
+                result.Add(new ProcessoAtividadeModel
+                {
+                    DataSolicitacao = item.DataSolicitacao,
+                    Tipo = item.Tipo,
+                    Atividade = item.Atividade,
+                    Id = item.Id,
+                    IdSetor = item.Setor.IdSetor,
+                    NomeSetor = item.Setor.NomeSetor,
+                    Observacao = item.Observacao,
+                    Responsavel = item.Responsavel,
+                    Status = item.Status,
+                    DescricaoStatus = StatusName(item.Status),
+                    DescricaoTipo = TipoDescricao(item.Tipo)
+                });
+            }
+
+            return result;
         }
 
         [HttpGet]

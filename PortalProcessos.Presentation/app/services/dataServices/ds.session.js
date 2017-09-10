@@ -13,7 +13,8 @@
             getUsuario: getUsuario,
             setUsuario: setUsuario,
             limparSessao: limparSessao,
-            removerPropriedade: removerPropriedade
+            removerPropriedade: removerPropriedade,
+            getAuthorization: getAuthorization
         };
 
         return service;
@@ -21,6 +22,14 @@
         function setUsuario(value) {
             localStorageService.set('usuario', value);
             $rootScope.usuario = value;
+        }
+
+        function getAuthorization() {
+            var authData = localStorageService.get('authorizationData');
+            if (authData) {
+                return 'Bearer ' + authData.token;
+            }
+            return null;
         }
 
         //Retorno:  isAuth, UserName, Name, Roles

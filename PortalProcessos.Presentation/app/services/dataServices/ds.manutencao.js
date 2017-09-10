@@ -13,7 +13,7 @@
             constants: {
                 Tipo: [
 	                { Descricao: 'Inclusão', Codigo: '1' },
-	                { Descricao: 'Alterção', Codigo: '2' },
+	                { Descricao: 'Alteração', Codigo: '2' },
 	                { Descricao: 'Exclusão', Codigo: '3' }
                 ],
                 Status: [
@@ -27,7 +27,8 @@
             getAtividadeById: getAtividadeById,
             save: save,
             getAllUsers: getAllUsers,
-            excluirAtividade: excluirAtividade
+            excluirAtividade: excluirAtividade,
+            getAtividades: getAtividades
            
         };
         return service;
@@ -50,6 +51,10 @@
 
         function getAtividadeById(id) {
             return $http.get(common.makeUrl([apiRoute, 'byId']), { params: { id: id } });
+        }
+
+        function getAtividades(model) {
+            return $http.post(common.makeUrl([apiRoute, 'getAtividades']), model);
         }
 
         function save(model) {

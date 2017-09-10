@@ -1,9 +1,9 @@
 ﻿<div class="anim-in-out anim-slide-below-fade">
-   
+
     <div class="row admin-panels">
-       
+
         <div class="col-md-12">
-           
+
             <div class="panel panel-group block-ui block-ui-anim-fade" block-ui="blockModal" aria-busy="false">
                 <div class="panel-heading">
                     <span class="panel-icon"><i class="fa fa-file"></i></span>
@@ -125,17 +125,19 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="item in vm.atividades">
-                                    <td>{{ item.Setor }} </td>
-                                    <td>{{ item.Atividade }} </td>
+                                    <td>{{ item.nomeSetor }} </td>
+                                    <td>{{ item.atividade }} </td>
                                     <td>
-                                        <span style="float: right;" ng-class="{'label label-rounded label-warning': item.Status == '1',
-                                                                  'label label-rounded label-success': item.Status == '2',
-                                                                  'label label-rounded label-primary': item.Status == '3'}">{{ item.Status }}</span>
+                                        {{item.descricaoTipo}}
                                     </td>
-                                    <td>{{ item.Responsavel }} </td>
-                                    <td>{{ item.Data | date:'dd/MM/yyyy' }} </td>
-                                    <td>{{ item.Status }} </td>
-                                    <td>{{ item.Observacoes }} </td>
+                                    <td>{{ item.responsavel }} </td>
+                                    <td>{{ item.dataSolicitacao | date:'dd/MM/yyyy' }} </td>
+                                    <td>
+                                        <span ng-class="{'label label-rounded label-warning': item.status == '1',
+                                                                  'label label-rounded label-success': item.status == '2',
+                                                                  'label label-rounded label-primary': item.status == '3'}">{{ item.descricaoStatus }}</span>
+                                    </td>
+                                    <td>{{ item.observacao }} </td>
                                     <td>
                                         <a class="btn btn-primary btn-xs" ng-click="vm.edit(item)" tooltip="Editar"><i class="fa fa-edit"></i></a>
                                         <a class="btn btn-danger btn-xs" ng-click="vm.excluir(item)" tooltip="Excluir"><i class="fa fa-trash"></i></a>

@@ -1,4 +1,5 @@
 ﻿using PortalProcessos.Api.Domain;
+using PortalProcessos.Api.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace PortalProcessos.Api.Repository.Interface
         ProcessoAtividade SaveAtividade(ProcessoAtividade model);
         ProcessoAtividade GetById(int id);
         void ExcluirAtividade(ProcessoAtividade atividade);
+        List<ProcessoAtividade> AtividadesSearch(BuscaAtividadeModel model);
         #endregion
 
         #region[Setores]

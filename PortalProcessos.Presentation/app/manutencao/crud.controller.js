@@ -5,9 +5,9 @@
         .module('app.manutencao')
         .controller('CrudManutencao', CrudManutencao);
 
-    CrudManutencao.$inject = ['$scope', '$http', '$q', '$modalInstance', 'blockUI', 'common', 'ds.manutencao', 'atividade'];
+    CrudManutencao.$inject = ['$scope', '$http', '$q', '$modalInstance', 'blockUI', 'common', 'ds.manutencao','ds.session', 'atividade'];
 
-    function CrudManutencao($scope, $http, $q, $modalInstance, blockUI, common, dsManutencao, atividade) {
+    function CrudManutencao($scope, $http, $q, $modalInstance, blockUI, common, dsManutencao, dsSession, atividade) {
 
         common.setBreadcrumb('Manutenção');
         var vm = this;
@@ -18,6 +18,7 @@
         vm.init = init;
         vm.save = save;
         vm.cancel = cancel;
+        var usuario = dsSession.getUsuario();
 
         vm.Titulo = "Incluir Atividade";
 
@@ -54,6 +55,9 @@
         function save() {
             vm.formValid = common.validateForm($scope.forms.editForm);
             if (vm.formValid) {
+                vm.ProcessoAtividade.IdSetor = vm.SetorSelecionado.idSetor;
+                vm.ProcessoAtividade.Tipo = vm.TipoSelecionado.Codigo;
+                vm.ProcessoAtividade.Responsavel = usuario.UserName;
                 vm.AlertMessage = "";
                 var blocker = blockUI.instances.get('blockModal');
                 blocker.start();

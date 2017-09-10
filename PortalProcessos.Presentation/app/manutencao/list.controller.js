@@ -10,6 +10,14 @@
 
         common.setBreadcrumb('Manutenção');
         var vm = this;
+        vm.search = {
+            DataInicio: null,
+            DataFim: null,
+            Responsavel: undefined,
+            IdSetor: 0,
+            Tipo: 0,
+            Status: 0
+        };
 
         //Funções
         vm.init = init;
@@ -17,6 +25,7 @@
         vm.excluir = excluir;
         vm.novaAtividade = novaAtividade;
         vm.buscarResponsavel = buscarResponsavel;
+        vm.Buscar = Buscar;
 
         //Feature Start
         init();
@@ -49,6 +58,33 @@
             }).catch(function (ex) {
                 exception.throwEx(ex);
             });
+        }
+
+        function Buscar() {
+
+            vm.search = {
+                DataInicio: vm.dtInicio,
+                DataFim: vm.dtTermino,
+                Responsavel: vm.ReponsavelSelecionado == undefined ? "" : vm.ReponsavelSelecionado.name,
+                IdSetor: vm.SetorSelecionado == undefined ? 0 : vm.SetorSelecionado.idSetor,
+                Tipo: vm.TipoSelecionado == undefined ? 0 : vm.TipoSelecionado.Codigo,
+                Status: vm.StatusSelecionado == undefined ? 0 : vm.StatusSelecionado.idStatus
+            };
+            var blocker = blockUI.instances.get('blockModal');
+            blocker.start();
+
+            var pBusca = dsManutencao.getAtividades(vm.search);
+            pBusca.then(function (result) {
+                vm.atividades = result.data;
+                console.log(result.data);
+            });
+            $q.all([pBusca]).then(function () {
+            })['finally'](function () {
+                blocker.stop();
+            }).catch(function (ex) {
+                exception.throwEx(ex);
+            });
+
         }
 
         function edit(item) {
@@ -107,12 +143,12 @@
                 templateUrl: 'app/manutencao/crud.html',
                 controller: 'CrudManutencao as vm',
                 backdrop: true,
-                size: 'lg'
-                //resolve: {
-                //    endereco: function () {
-                //        return endereco;
-                //    }
-                //}
+                size: 'lg',
+                resolve: {
+                    atividade: function () {
+                        return null;
+                    }
+                }
             });
             modalInstance.result.then(function () {
                 init();
